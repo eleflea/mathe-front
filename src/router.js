@@ -12,6 +12,21 @@ export default new Router({
       component: Home
     },
     {
+      path: '/page/:tk/:tid/:page',
+      name: 'page',
+      component: () => import(/* webpackChunkName: "page" */ './views/Page.vue')
+    },
+    {
+      path: '/lesson/:lessonName',
+      name: 'lesson',
+      component: () => import(/* webpackChunkName: "lesson" */ './views/Lesson.vue')
+    },
+    {
+      path: '/settings',
+      name: 'settings',
+      component: () => import(/* webpackChunkName: "settings" */ './views/Settings.vue')
+    },
+    {
       path: '/about',
       name: 'about',
       // route level code-splitting
