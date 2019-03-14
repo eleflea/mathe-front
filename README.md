@@ -1,5 +1,9 @@
 # mathe-front
 
+## Description
+
+mathe-front is a front-end of [NEU (China) math question bank website](https://neumathe.xyz), which lists [NEU online math study platform](http://mathe.neu.edu.cn/)'s questions.
+
 ## Project setup
 ```
 yarn install
@@ -14,16 +18,3 @@ yarn run serve
 ```
 yarn run build
 ```
-
-### Run your tests
-```
-yarn run test
-```
-
-### Lints and fixes files
-```
-yarn run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
