@@ -45,7 +45,6 @@
           <mu-button
             class="seg-jump"
             flat
-            color="secondary"
             :disabled="!preNext[0]"
             :to="preNext[0] ? `/page/${$route.params.tk}/${preNext[0].id}/1` : null"
           >
@@ -55,7 +54,6 @@
           <mu-button
             class="seg-jump"
             flat
-            color="secondary"
             :disabled="!preNext[1]"
             :to="preNext[1] ? `/page/${$route.params.tk}/${preNext[1].id}/1` : null"
           >
