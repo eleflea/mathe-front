@@ -68,7 +68,7 @@ export default {
     postStar() {
       axios({
         method: "post",
-        url: "https://api.neumathe.xyz/api/star",
+        url: `${store.API_BASE_URL}api/star`,
         data: "_=" + Date.now()
       })
         .then(resp => {
@@ -86,7 +86,7 @@ export default {
   created() {
     store.data.update.then(t => (this.update = t));
     axios
-      .get("https://api.neumathe.xyz/api/star")
+      .get(`${store.API_BASE_URL}api/star`)
       .then(resp => {
         const d = resp.data;
         if (d.code === 0) {

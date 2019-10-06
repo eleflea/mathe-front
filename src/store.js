@@ -1,8 +1,10 @@
 import axios from "axios";
 
+const API_BASE_URL = "https://api.neumathe.xyz:8181/";
+
 function fetchTrees() {
   return axios
-    .get("https://api.neumathe.xyz/api/clist")
+    .get(`${API_BASE_URL}api/clist`)
     .then(resp => {
       const d = resp.data;
       if (d.code === 0) {
@@ -18,6 +20,7 @@ function fetchTrees() {
 let ft = fetchTrees();
 
 export default {
+  API_BASE_URL,
   data: {
     trees: ft.then(data => data.trees),
     update: ft.then(data => data.update)

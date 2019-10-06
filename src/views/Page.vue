@@ -83,7 +83,10 @@ export default {
   data() {
     return {
       trees: [],
+      // number of questions in this chapter
       total: 0,
+      // number of questions in current page
+      len: 0,
       list: [],
       current: 1,
       segList: [],
@@ -103,7 +106,7 @@ export default {
       const { tk, tid, page } = this.$route.params;
       this.current = isNaN(parseInt(page)) ? 1 : parseInt(page);
       axios
-        .get("https://api.neumathe.xyz/api/qlist", {
+        .get(`${store.API_BASE_URL}api/qlist`, {
           params: { tk: tkMap[tk], tid, page: this.current, per: 5 }
         })
         .then(resp => {
@@ -111,6 +114,7 @@ export default {
           if (d.code === 0) {
             this.total = d.data.total;
             this.list = d.data.list;
+            this.len = d.data.length;
           } else {
             throw new Error(d.msg);
           }
@@ -125,7 +129,7 @@ export default {
     },
     onFetchOver() {
       this.fetchCount++;
-      if (this.fetchCount === 5) {
+      if (this.fetchCount === this.len) {
         this.$progress.done();
       }
     },

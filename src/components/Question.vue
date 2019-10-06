@@ -28,6 +28,7 @@
 </template>
 
 <script>
+import store from "@/store.js";
 import axios from "axios";
 import utils from "@/utils.js";
 import DraggableImg from "@/components/DraggableImg.vue";
@@ -89,7 +90,7 @@ export default {
     getQuestion() {
       this.imgs = [];
       axios
-        .get("https://api.neumathe.xyz/api/question", {
+        .get(`${store.API_BASE_URL}api/question`, {
           params: { name: this.name }
         })
         .then(resp => {
