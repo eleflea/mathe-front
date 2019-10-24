@@ -23,7 +23,7 @@
         :pointer="true"
       />
     </mu-flex>
-    <Crash @click.native="toggleAnswer" v-show="!options.showAnswer"/>
+    <Crash @click.native="toggleAnswer" v-show="!options.showAnswer" />
   </div>
 </template>
 
@@ -89,6 +89,7 @@ export default {
     },
     getQuestion() {
       this.imgs = [];
+      let imgs = [];
       axios
         .get(`${store.API_BASE_URL}api/question`, {
           params: { name: this.name }
@@ -100,14 +101,18 @@ export default {
               this[k] = d.data[k];
             }
             for (const i of [...Array(6).keys()]) {
-              this.imgs.push({
+              imgs.push({
                 src: utils.b64toImgURL(d.data[`img${i}`]),
                 isAnswer: 0
               });
             }
-            this.imgs[0].isAnswer = -1;
-            this.imgs[5].isAnswer = -1;
-            this.imgs[d.data.answer].isAnswer = 1;
+            imgs[0].isAnswer = -1;
+            imgs[5].isAnswer = -1;
+            // set question answer
+            imgs[d.data.answer].isAnswer = 1;
+            // shuffle options
+            imgs.splice(1, 4, ...utils.shuffle(imgs.slice(1, 5)));
+            this.imgs = imgs;
             return;
           }
           throw new Error(d.msg);
